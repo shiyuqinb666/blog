@@ -13,3 +13,7 @@ node_modules/
 # 部署时可能写入的临时文件
 .env
 .env.local
+
+# 需要 PAT 带 workflow 权限才能推送工作流文件；
+# 想改用 Actions 部署时，删掉下面这行、重推即可。
+.github/
