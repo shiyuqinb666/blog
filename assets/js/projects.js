@@ -32,7 +32,7 @@ window.PROJECT = {
   desc: "纯原生 Java 写的 Android 随机视频播放器：单 dex、零第三方依赖、安装包不到 200 KB。打开就能看，点一下换一条；不用注册、不用登录，也不上传任何个人数据。",
   facts: [
     ["版本", "1.3.8"],
-    ["安装包", "≈ 200 KB"],
+    ["安装包", "207 KB"],
     ["最低系统", "Android 5.0 / API 21"],
     ["targetSdk", "34"],
     ["语言", "Java 8"],
@@ -140,8 +140,7 @@ window.PROJECT = {
 
   /* 版本存档（本机构建产物） */
   builds: [
-    { v: "1.3.8", note: "当前版本", current: true },
-    { v: "1.3.0", note: "带 .idsig 的 v4 签名产物" },
-    { v: "1.2.1", note: "早期版本存档" }
+    { v: "1.3.8", note: "修 6 个 Bug + 4 项功能 · random-video-1.3.8.apk（207 KB）", current: true },
+    { v: "1.3.7", note: "上一版，可在 releases 里下到" }
   ]
 };

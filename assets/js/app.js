@@ -53,13 +53,13 @@
   wire("ghBtn", repoBase);
   wire("ghBtn2", ghUser ? `https://github.com/${ghUser}` : "");
   wire("repoBtn", repoBase);
-  wire("dlBtn", repoBase ? repoBase + "/releases" : "");
+  wire("dlBtn", repoBase ? repoBase + "/releases/latest" : "");
   wire("issueBtn", repoBase ? repoBase + "/issues" : "");
   wire("mailBtn", SITE.email ? "mailto:" + SITE.email : "");
 
   /* ---------------- Hero 统计 ---------------- */
   const stats = [
-    [P.facts && P.facts[1] ? P.facts[1][1] : "200 KB", "安装包"],
+    [P.facts && P.facts[1] ? P.facts[1][1] : "207 KB", "安装包"],
     ["25", "内容分类"],
     ["0", "第三方依赖"],
     ["API 21+", "最低系统"]
