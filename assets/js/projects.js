@@ -3,8 +3,8 @@
  * ============================================================ */
 
 window.SITE = {
-  name: "[你的名字]",
-  github: "",                 // 填你的 GitHub 用户名，如 "yujun"；留空则隐藏仓库链接
+  name: "shiyuqinb666",
+  github: "shiyuqinb666",      // 你的 GitHub 用户名；留空则隐藏仓库链接
   repo: "random-video",       // 随机视界的仓库名
   email: "",
   role: "Android 开发者",

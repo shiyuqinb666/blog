@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # 部署后把下面一行改成你的真实域名
-Sitemap: https://YOUR_GITHUB_USERNAME.github.io/blog/sitemap.xml
+Sitemap: https://shiyuqinb666.github.io/blog/sitemap.xml
