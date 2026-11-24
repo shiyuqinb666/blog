@@ -1,0 +1,15 @@
+# 系统 / 编辑器
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# 本地调试产物
+node_modules/
+.serve/
+*.log
+
+# 部署时可能写入的临时文件
+.env
+.env.local
