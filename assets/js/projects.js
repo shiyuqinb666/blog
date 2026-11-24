@@ -8,10 +8,10 @@ window.SITE = {
   repo: "random-video",       // 随机视界的仓库名
   email: "",
   role: "Android 开发者",
-  tagline: "一个人、一台手机、20 个 Java 文件，做安装包不到 200 KB 的原生播放器。",
+  tagline: "一个人、一台手机、20 个 Java 文件，做安装包只有 207 KB 的原生播放器。",
   bio: [
     "我做安卓，偏爱原生。不引 AndroidX、不用 Kotlin、不加一行多余的依赖 —— 因为每加一个库，安装包就胖一点、启动就慢一点，而这些代价最后都由用户承担。",
-    "随机视界就是这么长出来的：单 dex、20 个 Java 文件、约 200 KB。播放器的每一处交互、下载的每一条通知、分类算法的每一个权重，都是自己写、自己在真机上试出来的。"
+    "随机视界就是这么长出来的：单 dex、20 个 Java 文件、207 KB。播放器的每一处交互、下载的每一条通知、分类算法的每一个权重，都是自己写、自己在真机上试出来的。"
   ],
   focus: [
     "Java / Android Framework",
@@ -29,7 +29,7 @@ window.PROJECT = {
   en: "Random Video",
   emoji: "🎬",
   tagline: "每次打开，都是新的心动。",
-  desc: "纯原生 Java 写的 Android 随机视频播放器：单 dex、零第三方依赖、安装包不到 200 KB。打开就能看，点一下换一条；不用注册、不用登录，也不上传任何个人数据。",
+  desc: "纯原生 Java 写的 Android 随机视频播放器：单 dex、零第三方依赖、安装包 207 KB。打开就能看，点一下换一条；不用注册、不用登录，也不上传任何个人数据。",
   facts: [
     ["版本", "1.3.8"],
     ["安装包", "207 KB"],
@@ -97,7 +97,7 @@ window.PROJECT = {
   /* 技术要点 */
   tech: [
     ["语言", "Java 8，无 Kotlin、无 AndroidX"],
-    ["打包体积", "约 200 KB（单 classes.dex ≈ 156 KB）"],
+    ["打包体积", "207 KB（单 classes.dex ≈ 156 KB）"],
     ["依赖", "仅 Android Framework + org.json"],
     ["播放器", "原生 VideoView + MediaPlayer"],
     ["下载", "系统 DownloadManager"],
