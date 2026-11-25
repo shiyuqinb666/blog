@@ -26,13 +26,27 @@ die() { printf '\033[31m✘ %s\033[0m\n' "$*" >&2; exit 1; }
 
 # ---------- 1. 凭据 ----------
 TOKEN="${GH_TOKEN:-${GITHUB_TOKEN:-}}"
+# 本机凭据文件（chmod 600）：存在就自动用，不必再 export
+TOKEN_FILE="${GH_TOKEN_FILE:-$HOME/.dsh/secrets/github.token}"
+if [ -z "$TOKEN" ] && [ -f "$TOKEN_FILE" ]; then
+  TOKEN="$(tr -d '\r\n' < "$TOKEN_FILE")"
+  [ -n "$TOKEN" ] && say "使用本机凭据：$TOKEN_FILE"
+fi
 if [ -z "$TOKEN" ]; then
-  cat <<'EOF'
-缺少访问令牌。到 https://github.com/settings/tokens 新建一个 classic token，
-勾选 repo 与 workflow，然后：
+  cat <<EOF
+缺少访问令牌。两种方式任选：
 
-  export GH_TOKEN=ghp_xxxxxxxx
-  ./deploy.sh
+  1) 放进本机凭据文件（推荐，只需一次）：
+       mkdir -p ~/.dsh/secrets && chmod 700 ~/.dsh/secrets
+       printf '%s' 'ghp_xxxxxxxx' > ~/.dsh/secrets/github.token
+       chmod 600 ~/.dsh/secrets/github.token
+
+  2) 临时指定：
+       export GH_TOKEN=ghp_xxxxxxxx
+       ./deploy.sh
+
+token 在 https://github.com/settings/tokens 生成（classic，勾 repo；
+要推 .github/workflows 的话再加 workflow）。
 EOF
   exit 1
 fi
