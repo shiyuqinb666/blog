@@ -47,31 +47,50 @@ python3 -m http.server 8080
 
 ## 部署到 GitHub Pages
 
-### 方式 A：自带脚本（一步到位）
+当前线上用的是**分支直发**：Pages 的 Source 指向 `main` 分支根目录，
+推一次就自动重建（`.nojekyll` 保证静态文件原样发布，不走 Jekyll）。
+
+### 本机凭据（只配一次）
 
 ```bash
-export GH_TOKEN=ghp_你的token      # classic token，勾 repo + workflow
-./deploy.sh                        # 建仓 → 推送 → Pages 指向 GitHub Actions
+mkdir -p ~/.dsh/secrets && chmod 700 ~/.dsh/secrets
+printf '%s' 'ghp_你的token' > ~/.dsh/secrets/github.token
+chmod 600 ~/.dsh/secrets/github.token
 ```
 
-可选：`REPO=my-blog ./deploy.sh`（改仓库名）、`PRIVATE=1 ./deploy.sh`（私有仓库）。
-脚本会自动从 token 读出用户名，推送完把 token 从 `.git/config` 里清掉。
-
-### 方式 B：手写命令
+有了这个文件，`deploy.sh` 会自动读取，不必每次 `export`。
+任何 GitHub API 调用也可以用 `~/tools/ghapi`：
 
 ```bash
-git init -b main
-git add -A && git commit -m "feat: 随机视界作品集上线"
-git remote add origin https://github.com/<用户名>/blog.git
-git push -u origin main
+ghapi /user
+ghapi /repos/shiyuqinb666/blog/pages/builds/latest
 ```
 
-然后仓库 **Settings → Pages → Source** 选 **GitHub Actions**。
-地址：`https://<用户名>.github.io/blog/`
+### 发一次新版本
 
-### 想要根地址 `https://<用户名>.github.io`
+```bash
+cd blog
+./deploy.sh            # 没改动就只做一次 no-op 推送；有改动会自动 commit + push
+```
 
-仓库名改成 `<用户名>.github.io`，其余不变。
+可选参数：`REPO=my-blog`（换仓库名）、`PRIVATE=1`（私有仓库）、`SKIP_PAGES=1`（只推代码）。
+脚本会从 token 读出用户名，推送完把 token 从 `.git/config` 里清掉。
+
+### 改用 GitHub Actions 部署（可选）
+
+Actions 需要能推送 `.github/workflows/pages.yml`，而当前 token 只有 `repo` 权限，
+所以该文件在 `.gitignore` 里排除。想切过去：
+
+1. 重新生成 token，额外勾选 **workflow**
+2. 删掉 `.gitignore` 里的 `.github/` 一行
+3. `git add .github && git commit -m "ci: 启用 Actions 部署" && git push`
+4. 仓库 **Settings → Pages → Source** 改成 **GitHub Actions**
+
+### 地址
+
+- 仓库：https://github.com/shiyuqinb666/blog
+- 站点：https://shiyuqinb666.github.io/blog/
+- 想挂根地址 `https://<用户名>.github.io`：把仓库改名为 `<用户名>.github.io`
 
 ## 特性
 
